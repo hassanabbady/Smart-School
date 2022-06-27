@@ -68,7 +68,7 @@ await mongoose
   })
   .then((result) => {
      app.listen(process.env.PORT || port, () =>  {
-      console.log(`Example app e listening at http://localhost:${port}`);
+      console.log(`Example app listening at http://localhost:${port}`);
     });
   })
 

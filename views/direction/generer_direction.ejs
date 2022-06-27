@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<%- include("../partials/head") %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<script type="text/javascript">
+		function generate(l) {
+			if (typeof l==='undefined'){var l=8;}
+			/* c : chaîne de caractères alphanumérique */
+			var c='abcdefghijknopqrstuvwxyzACDEFGHJKLMNPQRSTUVWXYZ12345679',
+			n=c.length,
+			/* p : chaîne de caractères spéciaux */
+			p='!@#$+-*&_',
+			o=p.length,
+			r='',
+			n=c.length,
+			/* s : determine la position du caractère spécial dans le mdp */
+			s=Math.floor(Math.random() * (p.length-1));
+
+		    for(var i=0; i<l; ++i){
+		        if(s == i){
+		        	/* on insère à la position donnée un caractère spécial aléatoire */
+			        r += p.charAt(Math.floor(Math.random() * o));
+		        }else{
+		        	/* on insère un caractère alphanumérique aléatoire */
+			        r += c.charAt(Math.floor(Math.random() * n));
+		        }
+		    }
+		    return r;
+		}
+
+		/* exemple de fonction generation de mdp dans un form (utilise JQuery) */
+		$(document).ready(function() {
+			/* on détècte un des champ du formulaire contient une class "gen", on insèrera un bouton dans sa div parent qui appelera la fonction generate() */
+			if($('form input.gen').length){
+				$('form input.gen').each(function(){
+					$('<span class="generate" style="cursor:pointer"><i class="fa fa-fw fa-refresh"></i></span>').appendTo($(this).parent());
+				});
+			}
+			
+			/* évènement click sur un element de class "generate" > appelle la fonction generate() */
+		    $(document).on('click','.generate', function(e){
+		        e.preventDefault();
+		        /* ajout du mot de passe + changement du paramètre type de password vers text (pour lisibilité) */
+		        $(this).parent().children('input').val(generate()).attr('type','text');
+			});
+		}); 
+
+		</script>
+    <body>
+
+
+        <%- include("../partials/header") %>
+            <div class="container-fluid">
+                <div class="row">
+                    <%- include("../partials/sidebar") %>
+
+                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Contrôle d'accès</h1>
+                        </div>
+
+                        <form class="row g-3 needs-validation"  method="post" action="/generer1">
+                            <input type="hidden" name="profil" value="<%=profil%>">
+                            <input type="hidden" name="id" value="<%=parents.id%>">
+                            
+                            <div class="col-md-4 position-relative">
+                               
+                                <label for="validationTooltip01" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="validationTooltip01" name="firstname"
+                                    required="true" value="<%= parents.firstnameEleve  %> " readonly>
+                                <div class="valid-tooltip">
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label for="validationTooltip02" class="form-label">Prénom</label>
+                                <input type="text" class="form-control" id="validationTooltip02" name="lastname"
+                                    required="true" value="<%= parents.lastnameEleve  %> " readonly>
+                                <div class="valid-tooltip">
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label for="validationTooltipUsername" class="form-label">Mot de passe</label>
+                                <input type="text" class="gen form-control"   placeholder="Mot de passe *" required="required" name="password" id="password">
+                                <div class="valid-tooltip">
+                                </div>
+
+                            </div>
+                            <% var mail %>
+                            <% if(profil=='Parents'){ %>
+                                <%mail=parents.emailParent%>
+                               <% } %>
+                           <% if(profil=='Elèves'){%>
+                                <% mail=parents.emailEleve %>
+                                <% } %>
+
+                            <div class="col-md-4 position-relative">
+                                <label for="validationTooltip05" class="form-label">Email</label>
+                                
+                                <input type="email"  class="form-control" id="username" name="username"
+                                    required="true" value="<%= mail  %> " readonly>
+                                <div class="valid-tooltip">
+
+                                </div>
+                            </div>
+                          
+
+                         
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit">Enregistrer</button>
+                            </div>
+                        </form>
+                        
+                        <%- include("../partials/footer") %>
+                    </main>
+                   
+                </div>
+         
+            </div>
+
+
+
+            <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="ba1b12d698d8fd5cf7a27cb4-|49" defer=""></script>
+    </body>
+
+</html>

@@ -1,0 +1,54 @@
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Smart School</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-3">
+
+        <!-- <li><a href="/login" class="nav-link px-2 link-dark">Accès Parent</a></li>
+        <li><a href="/login" class="nav-link px-2 link-dark">Accès Elève</a></li>
+        <li><a href="/direction" class="nav-link px-2 link-dark">Accès Direction</a></li>
+        <li><a href="/accueilProf" class="nav-link px-2 link-dark">Accès Enseignant</a></li> -->
+        <% if (login_info) { %>
+         
+          <li><a href="/logout" class="nav-link px-2 link-dark">Se déconnecter</a></li>
+        <%} else { %>
+          <li><a href="/login" class="nav-link px-2 link-dark">Connecter</a></li>
+     
+        <% } %>
+        <!-- <li><a href="/login" class="nav-link px-2 link-dark">Login</a></li>
+        <li><a href="/logout" class="nav-link px-2 link-dark">Log out</a></li> -->
+      </ul>
+      <!-- <a class="nav-link px-3" href="#">
+        
+        Sign out
+      
+      </a> -->
+    </div>
+  </div>
+  <!-- <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" href="#">Sign out</a>
+    </div>
+  </div>
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" href="#">Sign out</a>
+    </div>
+  </div>
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" href="#">Sign out</a>
+    </div>
+  </div>
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" href="#">Sign out</a>
+    </div>
+  </div> -->
+</header>
+

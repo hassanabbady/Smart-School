@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<%- include("../partials/head") %>
+
+    <body>
+
+
+        <%- include("../partials/header") %>
+            <div class="container-fluid">
+                <div class="row">
+                    <%- include("../partials/sidebar") %>
+
+                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2"> Modifier compte Enseignant</h1>
+                        </div>
+
+                        <form class="row g-3 needs-validation"  method="post" action="/updateProf">
+                            <input type="hidden" name="id" value="<%= prof.id %>">
+                            
+                            <div class="col-md-4 position-relative">
+                               
+                                <label for="validationTooltip01" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="validationTooltip01" name="firstname"
+                                    required="true" value="<%= prof.firstname  %> ">
+                                <div class="valid-tooltip">
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label for="validationTooltip02" class="form-label">Prénom</label>
+                                <input type="text" class="form-control" id="validationTooltip02" name="lastname"
+                                    required="true" value="<%= prof.lastname  %> ">
+                                <div class="valid-tooltip">
+
+                                </div>
+                            </div>
+                           
+                            <div class="col-md-4 position-relative">
+                                <label for="validationTooltip05" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="validationTooltip05" name="username"
+                                    required="true" value="<%= prof.username  %> ">
+                                <div class="valid-tooltip">
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label for="validationTooltip04" class="form-label">Profession</label>
+                                <input type="text" class="form-control" id="validationTooltip02" name="profession"
+                                    required value="<%= prof.profession  %> ">
+                                <div class="valid-tooltip">
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-3 position-relative">
+                                <label for="validationTooltip04" class="form-label">GSM</label>
+                                <input type="tel" class="form-control" id="validationTooltip02" name="gsm"
+                                    required="true" value="<%= prof.gsm  %> ">
+                                <div class="valid-tooltip">
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-3 position-relative">
+                                <label for="validationTooltip04" class="form-label">TEL</label>
+                                <input type="text" class="form-control" id="validationTooltip02" name="tel" required value="<%= prof.tel  %> ">
+                                <div class="valid-tooltip">
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-6 position-relative">
+                                <label for="validationTooltip03" class="form-label">Adresse</label>
+                                <input type="text" class="form-control" id="validationTooltip03" name="adress" required value="<%= prof.adress  %> ">
+                                <div class="invalid-tooltip">
+                                    Please provide a valid city.
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit" >Modifier</button>
+                            </div>
+                        </form>
+                        
+                        <%- include("../partials/footer") %>
+                    </main>
+                   
+                </div>
+         
+            </div>
+
+
+
+           
+    </body>
+
+</html>

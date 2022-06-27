@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<%- include("../partials/head") %>
+
+    <body>
+
+
+        <%- include("../partials/header") %>
+            <div class="container-fluid">
+                <div class="row">
+                    <%- include("../partials/sidebarProf") %>
+
+                        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                            <div
+                                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                                <h1 class="h2">Carnet de liaison</h1>
+
+
+
+                            </div>
+                            <form class="row g-3 needs-validation" method="post" action="/updatecarnet"
+                                enctype="multipart/form-data">
+                                <input type="hidden" name="id" value="<%= dataCarnet._id %>">
+
+                                <input type="hidden" name="idProf" value="<%= dataCarnet.prof._id %>">
+                                <label for="validationTooltip01" class="form-label">
+                                    <h2>Titre</h2>
+                                </label>
+                                <input type="text" class="form-control" id="validationTooltip01" name="title"
+                                    value="<%= dataCarnet.title %>" required>
+
+
+                                <div class="col-md-2 position-relative">
+                                    <label for="validationTooltip01" class="form-label">du</label>
+
+                                    <% var dateAff=dataCarnet.date1.getFullYear() + '-' + ('0' +
+                                        (dataCarnet.date1.getMonth() + 1)).slice(-2) + '-' + ('0' +
+                                        dataCarnet.date1.getDate()).slice(-2)%>
+                                        <% var dateAff2=dataCarnet.date2.getFullYear() + '-' + ('0' +
+                                            (dataCarnet.date2.getMonth() + 1)).slice(-2) + '-' + ('0' +
+                                            dataCarnet.date2.getDate()).slice(-2)%>
+                                            <input type="date" class="form-control" id="validationTooltip01"
+                                                name="date1" value="<%=  dateAff %>" required>
+
+                                </div>
+                                <div class="col-md-2 position-relative">
+
+                                    <label for="validationTooltip01" class="form-label">au</label>
+                                    <input type="date" class="form-control" id="validationTooltip01" name="date2"
+                                        value="<%= dateAff2 %>" required>
+
+
+                                </div>
+                                <div class="col-md-4 position-relative">
+
+                                    <label for="validationTooltip01" class="form-label">Matiere</label>
+                                    <br>
+                                    <!-- <input type="text" class="form-control" id="validationTooltip01" name="matiere" value="<%= dataCarnet.matiere.name %>" readonly> -->
+                                    <% data.matiere.forEach(item=> { %>
+
+                                        <% if (item.name==dataCarnet.matiere.name ) {%>
+                                            <input type="radio" name="matiere" value='<%= item.id %>' checked>
+                                            <%= item.name %>
+                                                <%} else {%>
+
+                                                    <input type="radio" name="matiere" value='<%= item.id %>'>
+                                                    <%= item.name %>
+                                                        <% } %>
+
+
+
+
+                                                            <% }); %>
+                                </div>
+                                <div class="col-md-4 position-relative">
+
+                                    <label for="validationTooltip01" class="form-label">Classe</label> <br>
+
+
+                                    <% var i=0 %>
+
+
+
+                                        <% dataCarnet.classe.forEach(item=> { %>
+                                            <% while (i<Object.keys(data.classe).length) { %>
+                                                <% if (item.name==data.classe[i].name) {%>
+
+                                                    <input type="checkbox" name="classe" value='<%= item.id %>' checked>
+                                                    <%= item.name %>
+                                                        <%} else {%>
+
+                                                            <input type="checkbox" name="classe" value='<%= item.id %>'>
+                                                            <%= item.name %>
+                                                                <% } %>
+
+                                                                    <% i=i+1 %>
+                                                                        <% }; %>
+                                                                            <% }); %>
+
+
+
+
+
+
+
+
+
+                                </div>
+
+
+                                <div class="col-md-12 position-relative">
+                                    <label for="validationTooltip01" class="form-label">Description</label>
+
+                                    <textarea class="col-md-12 position-relative" name="description" placeholder=""
+                                        cols="100" rows="8"> <%= dataCarnet.description %></textarea>
+
+
+
+
+                                </div>
+                                <div class="col-md-4 position-relative">
+
+
+
+                                    <input class="form-control form-control-sm" type="file" name="avatar"
+                                        value="../uploads/<%= dataCarnet.avatar %>" id="avatar">
+
+                                </div>
+                                <div class="col-md-4 position-relative">
+
+
+
+
+                                    Fichier joint: <a href="../uploads/<%= dataCarnet.avatar %>" class="text-success">
+                                        <%= dataCarnet.avatar %>
+                                    </a>
+                                </div>
+                                <div class="col-12 text-end">
+                                    <button class="btn btn-warning" type="submit">Modifier</button>
+                                </div>
+                            </form>
+
+
+                            <%- include("../partials/footer") %>
+
+                        </main>
+                </div>
+            </div>
+
+
+            </main>
+    </body>
+
+</html>

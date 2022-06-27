@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<%- include("../partials/head") %>
+
+    <body>
+
+
+        <%- include("../partials/header") %>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <%- include("../partials/sidebar") %>
+
+                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Autorisation</h1>
+                        </div>
+                        <form class="row g-3 needs-validation" method="post" action="/add_carnet" enctype="multipart/form-data">
+
+
+                            <label for="validationTooltip01" class="form-label">
+                                <h2>Titre</h2>
+                            </label>
+                            <input type="text" class="form-control" id="validationTooltip01" name="title" required>
+
+
+                            <div class="col-md-4 position-relative">
+                                <label for="validationTooltip01" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="validationTooltip01" name="date1"
+                                    required>
+
+                            </div>
+                           
+                            <div class="col-md-4 position-relative">
+
+                                <label for="validationTooltip01" class="form-label">Classe</label>
+                                <select class="form-select" name="classe">
+                                     
+                                 
+                                
+                                    <% dataClasse.forEach(item=> { %>
+                                     
+                                        <option value='<%= item.id %>'><%= item.name %></option>
+                                                
+                                          
+                                            <% }); %>
+                                        </select>
+                            </div>
+                         
+                            <div class="col-md-4 position-relative">
+                                <textarea name="description" class="form-control" placeholder="Description"
+                                    id="floatingTextarea2" style="height: 100px"></textarea>
+                            
+
+
+                               
+                            </div>
+                            <div class="col-md-4 position-relative">
+
+                                    <label for="avatar">Joindre fichier:</label>
+
+                                    <input type="file" name="avatar" id="avatar">
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-dark" type="submit">Enregistrer</button>
+                            </div>
+                        </form>
+                        <br>
+                        <input class="form-control" id="myInput" type="text" placeholder="Recherche.."><br>
+                       
+                        <%- include("../partials/footer") %>
+
+                    </main>
+                </div>
+            </div>
+
+
+         
+
+
+
+    </body>
+
+</html>

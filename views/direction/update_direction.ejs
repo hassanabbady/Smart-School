@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<%- include("../partials/head") %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	    <body>
+
+
+        <%- include("../partials/header") %>
+            <div class="container-fluid">
+                <div class="row">
+                    <%- include("../partials/sidebar") %>
+
+                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Modifier compte direction</h1>
+                        </div>
+
+                        <form class="row g-3 needs-validation"  method="post" action="/updateDirection">
+                            <input type="hidden" name="id" value="<%= direction.id %>">
+                       
+                            <div class="col-md-4 position-relative">
+                               
+                                <label for="validationTooltip01" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="validationTooltip01" name="firstname"
+                                    required="true" value="<%= direction.firstname  %> ">
+                                <div class="valid-tooltip">
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label for="validationTooltip02" class="form-label">Prénom</label>
+                                <input type="text" class="form-control" id="validationTooltip02" name="lastname"
+                                    required="true" value="<%= direction.lastname  %> ">
+                                <div class="valid-tooltip">
+
+                                </div>
+                            </div>
+                         
+                            <div class="col-md-4 position-relative">
+                                <label for="validationTooltip05" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="validationTooltip05" name="username"
+                                    required="true" value="<%= direction.username  %> ">
+                                <div class="valid-tooltip">
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label for="validationTooltip04" class="form-label">Profession</label>
+                                <input type="text" class="form-control" id="validationTooltip02" name="profession"
+                                    required value="<%= direction.profession  %> ">
+                                <div class="valid-tooltip">
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-3 position-relative">
+                                <label for="validationTooltip04" class="form-label">GSM</label>
+                                <input type="tel" class="form-control" id="validationTooltip02" name="gsm"
+                                    required="true" value="<%= direction.gsm  %> ">
+                                <div class="valid-tooltip">
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-3 position-relative">
+                                <label for="validationTooltip04" class="form-label">TEL</label>
+                                <input type="text" class="form-control" id="validationTooltip02" name="tel" required value="<%= direction.tel  %> ">
+                                <div class="valid-tooltip">
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-6 position-relative">
+                                <label for="validationTooltip03" class="form-label">Adresse</label>
+                                <input type="text" class="form-control" id="validationTooltip03" name="adress" required value="<%= direction.adress  %> ">
+                                <div class="invalid-tooltip">
+                                    Please provide a valid city.
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit">Modifier</button>
+                            </div>
+                        </form>
+                        
+                        <%- include("../partials/footer") %>
+                    </main>
+                   
+                </div>
+         
+            </div>
+
+
+
+            <!-- <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="ba1b12d698d8fd5cf7a27cb4-|49" defer=""></script> -->
+    </body>
+
+</html>

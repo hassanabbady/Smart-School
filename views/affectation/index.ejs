@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<%- include("../partials/head") %>
+
+    <body>
+
+
+        <%- include("../partials/header") %>
+            <div class="container-fluid">
+                <div class="row">
+                    <%- include("../partials/sidebar") %>
+
+                        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                            <div
+                                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                                <h1 class="h2">Affectation</h1>
+                            </div>
+                            <form class="row g-3 needs-validation" id="formAffectation" method="post"
+                                action="/affectationAdd">
+                                <h3>Les professeurs</h3>
+                                <div class="col-md-4 position-relative">
+                                    <select class="form-select" name="prof">
+
+
+
+                                        <% dataProf.forEach(item=> { %>
+
+                                            <option value='<%= item.id %>'>
+                                                <%= item.lastname %>
+                                                    <%= item.firstname %>
+                                            </option>
+
+
+                                            <% }); %>
+                                    </select>
+
+                                </div>
+                                <br>
+                                <div class="col-md-4 position-relative">
+
+                                    <label for="validationTooltip01" class="form-label">
+                                        <h4>Classes</h4>
+                                    </label><br>
+                                    <% dataClasse.forEach(item=> { %>
+                                        <input type="checkbox" name="classe" value="<%= item.id %>">
+                                        <%= item.name %><br>
+
+
+                                            <% }); %>
+
+                                </div>
+                                <div class="col-md-4 position-relative">
+
+                                    <label for="validationTooltip01" class="form-label">
+                                        <h4>Matières</h4>
+                                    </label><br>
+                                    <% dataMatiere.forEach(item=> { %>
+                                        <input type="checkbox" name="matiere" value="<%= item.id %>">
+                                        <%= item.name %><br>
+
+
+                                            <% }); %>
+
+                                </div>
+                                <div class="col-12"><br>
+                                    <button class="btn btn-dark" type="button"
+                                        onclick="Verifier()">Enregistrer</button>
+                                </div>
+                            </form><br>
+                            <input class="form-control" id="myInput" type="text" placeholder="Recherche.."><br>
+                            <table class="table table-striped">
+                                <thead class="table-dark">
+
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Prof</th>
+                                        <th scope="col">Classes</th>
+                                        <th scope="col">Matières</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                    <% var i=0 %>
+                                        <% for(var item of dataAffectation){ %>
+
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= i %>
+                                                </th>
+                                                <td>
+                                                    <%= item.prof.firstname %>
+                                                        <%= item.prof.lastname %>
+                                                </td>
+                                                <td>
+
+                                                    <% item.classe.forEach(item1=> { %>
+
+                                                        <%= item1.name%> <br>
+
+                                                            <% }); %>
+                                                </td>
+                                                <td>
+                                                    <% item.matiere.forEach(item1=> { %>
+
+                                                        <%= item1.name%> <br>
+
+                                                            <% }); %>
+
+                                                </td>
+
+
+
+                                            </tr>
+                                            <% i++ %>
+                                                <% } %>
+                                </tbody>
+                            </table>
+                            <div class="alert alert-dark">
+                                <p class="h6">Total : <%= i-1 %>
+                                </p>
+
+                            </div>
+                            <%- include("../partials/footer") %>
+
+                        </main>
+                </div>
+            </div>
+
+
+            </main>
+            <script>
+                function Verifier() {
+
+                    let classe = document.getElementsByName("classe");
+                    let verification = false;
+                    let matiere = document.getElementsByName("matiere");
+                    let verificationMatiere = false;
+
+                   
+
+                   
+
+                    matiere.forEach(item1 => {
+                        if (item1.checked == true) {
+                            verificationMatiere = true
+                            
+
+                            // throw 'break';
+                        }
+                    })
+                    // if (verificationMatiere == false) {
+                    //     alert("Veuillez choisir une matiere")
+                    // }
+
+                    classe.forEach(item => {
+                        if (item.checked == true) {
+                            verification = true
+                            
+
+                            // throw 'break';
+                        }
+                    })
+
+                    // if (verification == false) {
+                    //     alert("Veuillez choisir une classe")
+                    // }
+
+if (verificationMatiere==true && verification==true){
+    document.getElementById("formAffectation").submit();
+}else{
+    alert('Veuillez completer les infos')
+
+}
+                }
+            </script>
+    </body>
+
+</html>

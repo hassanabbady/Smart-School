@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<%- include("../partials/head") %>
+
+    <body>
+
+
+        <%- include("../partials/header") %>
+            <div class="container-fluid">
+                <div class="row">
+                    <%- include("../partials/sidebarProf") %>
+
+                        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                            <div
+                                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                                <h1 class="h2">Carnet de liaison</h1>
+                                
+                                <% data.forEach(item=> { %>
+                                <font color="grey"  >  <h4 class="h6"><%= item.prof.lastname %>
+                                    <%= item.prof.firstname %></h4></font>
+                                    <% }); %>
+                                
+                            </div>
+                            <form class="row g-3 needs-validation" method="post" action="/add_carnet" enctype="multipart/form-data">
+
+                                <% data.forEach(item=> { %>
+                                <input type="hidden" name="id" value="<%= item.prof._id %>">
+                                        
+                                        <% }); %>
+                                <label for="validationTooltip01" class="form-label">
+                                    <h2>Titre</h2>
+                                </label>
+                                <input type="text" class="form-control" id="validationTooltip01" name="title" required>
+
+
+                                <div class="col-md-2 position-relative">
+                                    <label for="validationTooltip01" class="form-label">du</label>
+                                    <input type="date" class="form-control" id="validationTooltip01" name="date1"
+                                        required>
+
+                                </div>
+                                <div class="col-md-2 position-relative">
+
+                                    <label for="validationTooltip01" class="form-label">au</label>
+                                    <input type="date" class="form-control" id="validationTooltip01" name="date2"
+                                        required>
+                                        
+                                       
+                                </div>
+                                <div class="col-md-2 position-relative">
+
+                                    <label for="validationTooltip01" class="form-label">Matiere</label>
+                                    
+                                    <select class="form-select" name="matiere">
+                                         
+                                     
+                                        <% data.forEach(item=> { %>
+                                        
+                                            <% item.matiere.forEach(item1=> { %>
+
+                                                <option value='<%= item1.id %>'>
+                                                    <%= item1.name %>
+                                                
+                                                
+                                                
+                                                </option>
+                                                
+
+                                                    <% }); %>
+                                          
+                                                    
+                                              
+                                                <% }); %>
+                                            </select>
+                                </div>
+                                <div class="col-md-6 position-relative">
+
+                                    <label for="validationTooltip01" class="form-label">Classe</label>
+                                   
+                                         
+                                     
+                                    <br>
+                                        <% classeProf.forEach(item=> { %>
+                                       
+                                            <% item.classe.forEach(item=> { %>
+
+                                               
+                                                <input type="checkbox" name="classe" value="<%= item.id %>">
+
+                                                
+                                                <%= item.name %>
+   
+        
+                                                    <% }); %>
+                                            
+                                                    
+                                              
+                                                <% }); %>
+                                         
+                                </div>
+                               
+                          
+                                <div class="col-md-12 position-relative">
+                                    <label for="validationTooltip01" class="form-label">Description</label>
+
+                                    <textarea class="col-md-12 position-relative" name="description"  placeholder=" "
+                                         cols="100" rows="8"></textarea>
+                                        
+
+
+                                   
+                                </div>
+                                <div class="col-md-4 position-relative">
+                                    
+                                
+
+                                    <input class="form-control form-control-sm" type="file" name="avatar" id="avatar">
+                            </div>
+                                
+                                <div class="col-12 text-end">
+                                    <button class="btn btn-primary" type="submit">Enregistrer</button>
+                                </div>
+                            </form>
+                            <br>
+                           <input class="form-control" id="myInput" type="text" placeholder="Recherche.."><br>
+                           <table id="example"   class="display table table-striped">
+                                <thead class="table-dark">
+    
+                                    <tr>
+                                        <th scope="col">#</th>
+                                       
+                                        <th scope="col">Titre</th>
+                                        <th scope="col">du</th>
+                                        <th scope="col">au</th>
+                                        <th scope="col">Classe</th>
+                                        <th scope="col">Matière</th>
+                                        <th scope="col"class="text-center">Afficher</th>
+                                        <th scope="col"class="text-center">Telecharger</th>
+                                        <th scope="col" class="text-center">Supprimer</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                    <% var i=1 %>
+                                        <% dataCarnet.forEach(item=> { %>
+                                          
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= i %>
+                                                </th>
+                                                
+                                                <td>
+                                                    <%= item.title %>
+                                                </td>
+                                                <td>
+                                                    <%=  item.date1.getDate()+'/'+(item.date1.getMonth()+1)+'/'+item.date1.getFullYear() %>
+                                                </td>
+                                                <td>
+                                                    <%= item.date2.getDate()+'/'+(item.date2.getMonth()+1)+'/'+item.date2.getFullYear() %>
+                                                </td>
+                                                <td>
+                                                    <% item.classe.forEach(item1=> { %>
+
+                                                        <%= item1.name%> <br>
+
+                                                            <% }); %>
+                                                </td>
+                                                <td>
+                                                    <%= item.matiere.name %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="/getcarnet/<%= item._id %>" class="text-primary"><i class="fas fa-eye"></i></a>
+                                                </td>
+                                                <td class="text-center">
+                                                    
+                                                    <% if (item.avatar=='Rien') {%>
+                                                       
+                                                         <i class="fas fa-times-circle"></i> 
+                                                     
+                                                    <%} else { %>
+                                                        
+                                                        <a href="../uploads/<%= item.avatar %>"  class="text-success"><i class="fas fa-file-download"></i></a>
+                                                       <%}%>
+
+
+                                                    </td>
+                                                    
+                                                    <td class="text-center">
+                                                   
+                                                    
+                                                    
+                                               
+    
+                                                    
+                                                    <a href="/deleteCarnetProf/<%= item._id %>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                                                </td>
+    
+                                            </tr>
+                                            <% i++ %>
+                                                <% }); %>
+                                </tbody>
+                            </table>
+                            <div class="alert alert-dark">
+                                <p class="h6">Total : <%= i-1  %></p>
+                               
+                            </div>
+                            
+                            <%- include("../partials/footer") %>
+
+                        </main>
+                </div>
+            </div>
+
+
+            </main>
+    </body>
+
+</html>

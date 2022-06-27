@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<%- include("../partials/head") %>
+
+    <body>
+
+
+        <%- include("../partials/header") %>
+            <div class="container-fluid">
+                <div class="row">
+                    <%- include("../partials/sidebar") %>
+
+                        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                            <div
+                                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                                <h1 class="h2">Classe</h1>
+                            </div>
+                         
+                            <% if(message.length> 0) { %>
+                                
+                                <div class="<%=type%>" role="alert">
+                                    <%= message %>
+                                </div>
+                                <% } %>
+                            <form class="row g-3 needs-validation"  method="post" action="/add_classe">
+
+
+                                <div class="col-md-4 position-relative">
+                                    <label for="validationTooltip01" class="form-label">Intitulé de la classe</label>
+                                    <input type="text" class="form-control" id="validationTooltip01" name="name" required>
+                                    <div class="valid-tooltip">
+
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-dark"type="submit">Enregistrer</button>
+                                </div>
+                            </form>
+                            <br>
+                            <input class="form-control" id="myInput" type="text" placeholder="Recherche.."><br>
+                            <table class="table table-striped">
+                                <thead class="table-dark">
+
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Classe</th>
+                                        <th scope="col">Action</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                    <% var i=1 %>
+                                        <% dataClasse.forEach(item=> { %>
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= i %>
+                                                </th>
+                                                <td>
+                                                    <%= item.name %>
+                                                </td>
+
+                                                <td>
+
+                                                    <a href="/updateClasse/<%= item._id %>"><button type="button"
+                                                        class="btn btn-secondary"><i
+                                                            class="fas fa-edit"></i></button></a>
+                                                    <a href="/deleteClasse/<%= item._id %>"><button class="btn btn-danger" id="btnDelete"><i
+                                                        class="fas fa-trash-alt"></i></button></a>
+                                                </td>
+
+                                            </tr>
+                                            <% i++ %>
+                                                <% }); %>
+                                </tbody>
+                            </table>
+                            <div class="alert alert-dark">
+                                <p class="h6">Total : <%= i-1  %></p>
+                               
+                            </div>
+                            <%- include("../partials/footer") %>
+
+                        </main>
+                </div>
+            </div>
+           
+
+                </main>
+    </body>
+
+</html>

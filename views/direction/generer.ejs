@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<%- include("../partials/head") %>
+
+    <body>
+
+
+        <%- include("../partials/header") %>
+            <div class="container-fluid" id="appVue">
+                <div class="row">
+                    <%- include("../partials/sidebar") %>
+
+                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Contrôle d'accès {{ selected }} </h1>
+                            <!-- //<%=profil%> -->
+                        </div>
+                        <form class="row g-3 needs-validation"  method="GET" action="/generer">
+                          
+                        <div class="col-md-4 position-relative">
+                      
+                            <select class="form-select" v-model="selected" name="profil">
+                                <option disabled value="">Veuillez choisir</option>
+                               
+                                <option value='Parents'>Parents</option>
+                                <option value='Elèves'>Elèves</option>
+                               
+                            </select>
+                       
+                           </div>
+                           <div class="col-12">
+                            <button class="btn btn-dark" type="submit" >Afficher</button>
+                        </div>
+                       
+                           </form><br>
+                           <form class="row g-3 needs-validation"  method="POST" action="/genererTout">
+                          
+                            <div class="col-md-4 position-relative">
+                                <label for="validationTooltipUsername" class="form-label">Mot de passe</label>
+                                <input type="text" class="gen form-control"   placeholder="Mot de passe *" required="required" name="password" id="password">
+                                <div class="valid-tooltip">
+                                </div>
+
+                            </div>
+                               <div class="col-12">
+                                <button class="btn btn-dark" type="submit" >Générer tout</button>
+                            </div>
+                           
+                               </form>
+                        <br>
+                        <% var i=1 %>
+                       
+                        <input class="form-control" id="myInput" type="text" placeholder="Recherche.."><br>
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+
+                                <tr>
+                                    <th scope="col">#</th>
+                                
+                                    <th scope="col">Prénom</th>
+                                    <th scope="col">Nom</th>
+                                  
+                                    <th scope="col">E-mail</th>
+                                    <th scope="col">Action</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                               
+                                    <% dataDirection.forEach(item=> { %>
+                                        <tr>
+                                            <th scope="row">
+                                                <%= i %>
+                                            </th>
+                                          
+                                            <td>
+                                                <% if(profil=='Parents'){ %>
+                                                    <%= item.lastnamePere %>
+                                                   <% } %>
+                                               <% if(profil=='Elèves'){%>
+                                                <%= item.lastnameEleve %>
+                                                    <% } %>
+                                               
+                                            </td>
+                                            <td>
+                                                <% if(profil=='Parents'){ %>
+                                                    <%= item.firstnamePere %>
+                                                   <% } %>
+                                               <% if(profil=='Elèves'){%>
+                                                <%= item.firstnameEleve %>
+                                                    <% } %>
+                                           </td>
+
+                                              
+                                            </td>
+                                           
+                                            <td>
+                                                <% if(profil=='Parents'){ %>
+                                                     <%= item.emailParent%>
+                                                    <% } %>
+                                                <% if(profil=='Elèves'){%>
+                                                     <%= item.emailEleve %>
+                                                     <% } %>
+                                            </td>
+                                            <td>
+
+                                                <a href="/genererpwd/<%= item._id %>"><button type="button"
+                                                        class="btn btn-secondary"><i class="fas fa-solid fa-key"></i></button></a>
+                                                
+                                            </td>
+
+                                        </tr>
+                                        <% i++ %>
+                                            <% }); %>
+                            </tbody>
+                        </table>
+                        <div class="alert alert-dark">
+                            <p class="h6">Total : <%= i-1  %></p>
+                           
+                        </div>
+                        <%- include("../partials/footer") %>
+                    </main>
+                   
+                </div>
+         
+            </div>
+
+
+
+          <script>
+              var app =new Vue({
+                el:'#appVue',
+                data:{
+                    selected:'',
+                }
+              })
+          </script>
+    </body>
+
+</html>

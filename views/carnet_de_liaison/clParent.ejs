@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<%- include("../partials/head") %>
+
+    <body>
+
+
+        <%- include("../partials/header") %>
+            <div class="container-fluid">
+                <div class="row">
+                    <%- include("../partials/sidebarParent") %>
+
+                        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                            <div
+                                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                                <h1 class="h2">Carnet de liaison</h1>
+                                <% dataEleve.forEach(item=> { %>
+                                    <font color="grey"  >  <h4 class="h6"><%= item.lastnameEleve %>
+                                        <%= item.firstnameEleve%></h4></font>
+                                        <% }); %>
+                            </div>
+                        
+                            <form class="row g-3 needs-validation"  method="post" action="/clParent">
+
+
+                                <div class="col-md-4 position-relative">
+                          
+                                    
+                                    <select name="eleve" class="form-control">
+                                        <% dataEleve.forEach(item=> { %>
+                                            <option value="<%= item._id%>" selected> <%= item.firstnameEleve %> <%= item.lastnameEleve %></option>
+                                            <% }) %>
+                                    </select>
+                                    
+                                 
+                                </div>
+                                <div class="col-md-4 position-relative">
+                                    <button class="btn btn-dark"type="submit">Go</button>
+                                </div>
+                            </form>
+<br>
+                            <input class="form-control" id="myInput" type="text" placeholder="Recherche.."><br>
+                            <table class="table table-striped">
+                                <thead class="table-dark">
+    
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Profs.</th>
+                                        <th scope="col">Titre</th>
+                                        <th scope="col">du</th>
+                                        <th scope="col">au</th>
+                                    
+                                        <th scope="col">Matière</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Action</th>
+    
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                    <% var i=1 %>
+                                        <% dataCarnet.forEach(item=> { %>
+                                          
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= i %>
+                                                </th>
+                                                <td>
+                                                    <%= item.prof.lastname %> <%= item.prof.firstname %>
+                                                </td>
+                                                <td>
+                                                    <%= item.title %>
+                                                </td>
+                                                <td>
+                                                    <%=  item.date1.getDate()+'/'+(item.date1.getMonth()+1)+'/'+item.date1.getFullYear() %>
+                                                </td>
+                                                <td>
+                                                    <%= item.date2.getDate()+'/'+(item.date2.getMonth()+1)+'/'+item.date2.getFullYear() %>
+                                                </td>
+                                               
+                                                <td>
+                                                    <%= item.matiere.name %>
+                                                </td>
+                                                <td>
+                                                    <%= item.description %>
+                                                </td>
+                                                <td>
+                                                    
+                                                    <a href="../uploads/<%= item.avatar %>" class="text-muted"><i class="fas fa-cloud-download"></i></a>
+                                                    
+                                               
+    
+                                                    
+                                                   
+                                                </td>
+    
+                                            </tr>
+                                            <% i++ %>
+                                                <% }); %>
+                                </tbody>
+                            </table>
+                            <div class="alert alert-dark">
+                                <p class="h6">Total : <%= i-1  %></p>
+                               
+                            </div>
+                            <%- include("../partials/footer") %>
+
+                        </main>
+                </div>
+            </div>
+
+
+            </main>
+    </body>
+
+</html>

@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<%- include("../partials/head") %>
+
+    <body>
+
+
+        <%- include("../partials/header") %>
+            <div class="container-fluid">
+                <div class="row">
+                    <%- include("../partials/sidebar") %>
+
+                        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                            <div
+                                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                                <h1 class="h2">Compte élève</h1>
+                            </div>
+                            <form class="row g-3 needs-validation" method="post" action="/addeleve">
+                                
+                                <div class="col-md-4 position-relative">
+                                    <label for="validationTooltip01" class="form-label">Nom</label>
+                                    <input type="text" class="form-control" name="nomEleve" id="validationTooltip01"
+                                        value="" required>
+                                    <div class="valid-tooltip">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 position-relative">
+                                    <label for="validationTooltip02" class="form-label">Prénom</label>
+                                    <input type="text" class="form-control" name="prenomEleve" id="validationTooltip02"
+                                        value="" required>
+                                    <div class="valid-tooltip">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 position-relative">
+                                    <label for="validationTooltip01" class="form-label">Classe</label>
+                                    <select class="form-select" name="classe">
+
+                                        <option value=''>
+
+
+
+
+                                        </option>
+                                        <% classes.forEach(item=> { %>
+
+
+
+                                            <option value='<%= item.id %>'>
+                                                <%= item.name %>
+
+
+
+                                            </option>
+
+
+
+
+
+
+                                            <% }); %>
+                                    </select>
+                                  
+                                </div>
+                                <div class="col-md-4 position-relative">
+                                    <label for="validationTooltip03" class="form-label">Date de naissance</label>
+                                    <input type="date" class="form-control" name="dateNaissanceEleve" id="validationTooltip03"
+                                        >
+                                 
+                                </div>
+                                <div class="col-md-4 position-relative">
+                                    <label for="validationTooltip05" class="form-label">Email Elève</label>
+                                    <input type="email" class="form-control" name="emailEleve" >
+                                    <div class="valid-tooltip">
+
+                                    </div>
+                                </div>
+
+                         
+
+                                <div class="col-md-4 position-relative">
+                                    <label for="validationTooltip03" class="form-label">Adresse</label>
+                                    <input type="text" class="form-control" name="adressEleve" id="validationTooltip03"
+                                        >
+                                 
+                                </div>
+
+                                <h4> Renseignements sur la famille</h4>
+
+
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                Père
+                                            </div>
+                                            <div class="card-body">
+
+                                                <label for="validationTooltip04" class="form-label">Nom père</label>
+                                                <input type="text" class="form-control" name="nomPere"
+                                                    id="validationTooltip02" value="" >
+                                                <div class="valid-tooltip">
+                                                </div>
+
+
+
+
+                                                <label for="validationTooltip04" class="form-label">Prénom père</label>
+                                                <input type="text" class="form-control" name="prenomPere"
+                                                    id="validationTooltip02" value="" >
+                                                <div class="valid-tooltip">
+                                                </div>
+
+
+
+
+                                                <label for="validationTooltip05" class="form-label">Email père</label>
+                                                <input type="email" class="form-control" name="emailPere"
+                                                    id="validationTooltip05" >
+                                                <div class="valid-tooltip">
+
+                                                </div>
+
+
+
+                                                <label for="validationTooltip04" class="form-label">Profession
+                                                    père</label>
+                                                <input type="text" class="form-control" name="professionPere"
+                                                    id="validationTooltip02" value="" >
+                                                <div class="valid-tooltip">
+                                                </div>
+
+
+
+
+                                                <label for="validationTooltip04" class="form-label">GSM père</label>
+                                                <input type="text" class="form-control" name="gsmPere"
+                                                    id="validationTooltip02" value="" >
+                                                <div class="valid-tooltip">
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                Mère
+                                            </div>
+                                            <div class="card-body">
+
+
+                                                <label for="validationTooltip04" class="form-label">Nom mère</label>
+                                                <input type="text" class="form-control" name="nomMere"
+                                                    id="validationTooltip02" value="" >
+                                                <div class="valid-tooltip">
+                                                </div>
+
+
+
+
+                                                <label for="validationTooltip04" class="form-label">Prénom mère</label>
+                                                <input type="text" class="form-control" name="prenomMere"
+                                                    id="validationTooltip02" value="" >
+                                                <div class="valid-tooltip">
+                                                </div>
+
+
+
+
+                                                <label for="validationTooltip05" class="form-label">Email mère</label>
+                                                <input type="email" class="form-control" name="emailMere"
+                                                    id="validationTooltip05" >
+                                                <div class="valid-tooltip">
+
+                                                </div>
+
+
+
+                                                <label for="validationTooltip04" class="form-label">Profession
+                                                    mère</label>
+                                                <input type="text" class="form-control" name="professionMere"
+                                                    id="validationTooltip02" value="" >
+                                                <div class="valid-tooltip">
+                                                </div>
+
+
+
+
+                                                <label for="validationTooltip04" class="form-label">GSM mère</label>
+                                                <input type="text" class="form-control" name="gsmMere"
+                                                    id="validationTooltip02" value="" >
+                                                <div class="valid-tooltip">
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="card">
+                                    <h5 class="card-header">Informations de connexion</h5>
+                                    <div class="card-body">
+                                        <label for="validationTooltip05" class="form-label">Email parent</label>
+                                        <input type="email" class="form-control" name="emailParent"
+                                            id="validationTooltip05" required>
+
+
+
+                                  
+
+                                    </div>
+                                  
+                                        <button class="btn btn-dark" type="submit">Enregistrer</button>
+                                   
+                                   
+                                </div>
+
+
+
+                             
+                            </form>
+
+
+                            <br>
+                                    <% var i=1 %>
+                                        <input class="form-control" id="myInput" type="text"
+                                            placeholder="Recherche.."><br>
+                                        <table class="table table-striped">
+                                            <thead class="table-dark">
+
+                                                <tr>
+                                                    <th scope="col">#</th>
+
+                                                    <th scope="col">Prénom</th>
+                                                    <th scope="col">Nom</th>
+                                                    <th scope="col">Classe</th>
+                                                    
+                                                    <th scope="col">Action</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="myTable">
+
+                                                <% dataEleve.forEach(item=> { %>
+                                                   
+                                                      
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    <%= i %>
+                                                                </th>
+
+                                                                <td>
+                                                                    <%= item.lastnameEleve %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= item.firstnameEleve %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= item.classe.name %>
+                                                                </td>
+                                                            
+                                                                <td>
+
+                                                                    <a href="/updDirection/<%= item._id %>"><button
+                                                                            type="button" class="btn btn-secondary"><i
+                                                                                class="fas fa-edit"></i></button></a>
+                                                                    <a href="/deleteDirection/<%= item._id %>"><button
+                                                                            class="btn btn-danger" id="btnDelete"><i
+                                                                                class="fas fa-trash-alt"></i></button></a>
+                                                                </td>
+
+                                                            </tr>
+
+                                                            <% i++ %>
+                                                              
+                                                                        <% }); %>
+
+
+
+                                            </tbody>
+                                        </table>
+                                        <div class="alert alert-dark">
+                                            <p class="h6">Total : <%= i-1 %>
+                                            </p>
+
+                                        </div>
+                            <%- include("../partials/footer") %>
+                </div>
+
+
+
+                </main>
+    </body>
+
+</html>

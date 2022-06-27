@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<%- include("../partials/head") %>
+
+    <body>
+
+
+        <%- include("../partials/header") %>
+            <div class="container-fluid">
+                <div class="row">
+                    <%- include("../partials/sidebar") %>
+
+                        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+                            <div
+                                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                                <h1 class="h2"> Compte direction</h1>
+                            </div>
+
+                            <% if(message.length> 0) { %>
+                                <div class="alert alert-warning" role="alert">
+                                    <%= message %>
+                                </div>
+                                <% } %>
+                                    <form class="row g-3 needs-validation" method="post" action="/add_direction">
+
+
+                                        <div class="col-md-4 position-relative">
+                                            <label for="validationTooltip01" class="form-label">Nom</label>
+                                            <input type="text" class="form-control" id="validationTooltip01"
+                                                name="firstname">
+                                            <div class="valid-tooltip">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 position-relative">
+                                            <label for="validationTooltip02" class="form-label">Prénom</label>
+                                            <input type="text" class="form-control" id="validationTooltip02"
+                                                name="lastname">
+                                            <div class="valid-tooltip">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 position-relative">
+                                            <label for="validationTooltip05" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="validationTooltip05"
+                                                name="username">
+                                            <div class="valid-tooltip">
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 position-relative">
+                                            <label for="validationTooltip04" class="form-label">Profession</label>
+                                            <input type="text" class="form-control" id="validationTooltip02"
+                                                name="profession">
+                                            <div class="valid-tooltip">
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <input type="hidden" class="form-control" value="Direction" name="type">
+
+                                        <div class="col-md-4 position-relative">
+                                            <label for="validationTooltip04" class="form-label">GSM</label>
+                                            <input type="text" class="form-control" id="validationTooltip02" name="gsm">
+                                            <div class="valid-tooltip">
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-md-4 position-relative">
+                                            <label for="validationTooltip04" class="form-label">TEL</label>
+                                            <input type="text" class="form-control" id="validationTooltip02" name="tel">
+                                            <div class="valid-tooltip">
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-md-4 position-relative">
+                                            <label for="validationTooltip04" class="form-label">MOT DE PASSSE</label>
+                                            <input type="text" class="form-control" id="validationTooltip02"
+                                                value="12345678" name="password">
+                                            <div class="valid-tooltip">
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="col-md-8 position-relative">
+                                            <label for="validationTooltip03" class="form-label">Adresse</label>
+                                            <input type="text" class="form-control" id="validationTooltip03"
+                                                name="adress">
+                                            <div class="invalid-tooltip">
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-12">
+                                            <button class="btn btn-dark" type="submit">Enregistrer</button>
+                                        </div>
+                                        <div class="col-md-8 position-relative">
+                                            <label for="validationTooltip03" class="form-label">Modele Excel</label>
+                                            <a href="/uploads/Models/Direction Model.xlsx"><i
+                                                    class="fas fa-cloud-download"></i></a>
+                                            <div class="invalid-tooltip">
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <br>
+                                    <form action="/uploadfile" enctype="multipart/form-data" method="post">
+
+
+                                        <div class="mb-3">
+
+                                            <input class="form-control" type="file" id="uploadfile" name="uploadfile"
+                                                accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel'>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-dark" type="submit">Upload Excel</button>
+                                        </div>
+
+                                    </form>
+                                    <br>
+                                    <% var i=1 %>
+                                        <input class="form-control" id="myInput" type="text"
+                                            placeholder="Recherche.."><br>
+                                        <table class="table table-striped">
+                                            <thead class="table-dark">
+
+                                                <tr>
+                                                    <th scope="col">#</th>
+
+                                                    <th scope="col">Prénom</th>
+                                                    <th scope="col">Nom</th>
+                                                    <th scope="col">GSM</th>
+                                                    <th scope="col">Tel</th>
+                                                    <th scope="col">E-mail</th>
+                                                    <th scope="col">Action</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="myTable">
+
+                                                <% dataDirection.forEach(item=> { %>
+                                                   
+                                                      
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    <%= i %>
+                                                                </th>
+
+                                                                <td>
+                                                                    <%= item.lastname %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= item.firstname %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= item.gsm %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= item.tel %>
+                                                                </td>
+                                                                <td>
+                                                                  
+                                                                        <%= item.username %>
+
+                                                                </td>
+                                                                <td>
+
+                                                                    <a href="/updDirection/<%= item._id %>"><button
+                                                                            type="button" class="btn btn-secondary"><i
+                                                                                class="fas fa-edit"></i></button></a>
+                                                                    <a href="/deleteDirection/<%= item._id %>"><button
+                                                                            class="btn btn-danger" id="btnDelete"><i
+                                                                                class="fas fa-trash-alt"></i></button></a>
+                                                                </td>
+
+                                                            </tr>
+
+                                                            <% i++ %>
+                                                              
+                                                                        <% }); %>
+
+
+
+                                            </tbody>
+                                        </table>
+                                        <div class="alert alert-dark">
+                                            <p class="h6">Total : <%= i-1 %>
+                                            </p>
+
+                                        </div>
+
+                                        <%- include("../partials/footer") %>
+                        </main>
+
+                </div>
+
+            </div>
+
+
+
+
+    </body>
+
+</html>

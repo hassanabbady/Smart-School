@@ -30,7 +30,7 @@
                                         <th scope="col">au</th>
                                         <th scope="col">Classe</th>
                                         <th scope="col">Matière</th>
-                                        <th scope="col">Description</th>
+                                        <th scope="col"class="text-center">Afficher</th>
                                         <th scope="col"class="text-center">Telecharger</th>
                                         <th scope="col" class="text-center">Supprimer</th>
     
@@ -45,7 +45,7 @@
                                                     <%= i %>
                                                 </th>
                                                 <td>
-                                                    <%= item.prof.lastname %> <%= item.prof.firstname %>
+                                                <%#=item.prof.lastname %> <%#= item.prof.firstname %>   
                                                 </td>
                                                 <td>
                                                     <%= item.title %>
@@ -66,8 +66,8 @@
                                                 <td>
                                                     <%= item.matiere.name %>
                                                 </td>
-                                                <td>
-                                                    <%= item.description %>
+                                                <td class="text-center">
+                                                    <a href="/getcarnet/<%= item._id %>" class="text-primary"><i class="fas fa-eye"></i></a>
                                                 </td>
 
                                                 <td class="text-center">

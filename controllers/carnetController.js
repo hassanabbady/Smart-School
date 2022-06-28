@@ -1,7 +1,7 @@
 const db = require("../models/cahier");
 const flash = require('connect-flash');
 const fs = require('fs')
-const sharp = require("sharp");
+
 
 const carnetProf = (req, res) => {
   if (profilProf == "Profs") {
@@ -176,19 +176,19 @@ if(req.file==undefined){
   carnet
     .save()
     .then((result) => {
-      async function resizeImage() {
-        try {
-          await sharp("public/uploads/"+result.avatar)
-            .resize({
-              width: 300,
-              height: 300
-            })
-            .toFile("public/uploads/"+'01'+result.avatar);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      resizeImage();
+      // async function resizeImage() {
+      //   try {
+      //     await sharp("public/uploads/"+result.avatar)
+      //       .resize({
+      //         width: 300,
+      //         height: 300
+      //       })
+      //       .toFile("public/uploads/"+'01'+result.avatar);
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      // }
+      // resizeImage();
       req.flash('message', 'Succès!!');
       // res.send(req.flash('message'));
       res.redirect("/carnetProf");

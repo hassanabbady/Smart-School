@@ -61,7 +61,8 @@ const  mongoose = require("mongoose");
 const cnx = async()=>{
 await mongoose
   .connect(
-    'mongodb+srv://hassan:1234@cluster0.egy9i.mongodb.net/smartschool?retryWrites=true&w=majority',  {
+    //your db
+    '',  {
 
 
     

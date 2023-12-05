@@ -56,8 +56,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // mongoose
 const  mongoose = require("mongoose");
-//mongodb://localhost/ArretBilan
-//mongodb+srv://hassan:1234@cluster0.egy9i.mongodb.net/smartschool?retryWrites=true&w=majority
+//mongodb://localhost/smartschool
+
 const cnx = async()=>{
 await mongoose
   .connect(
